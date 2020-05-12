@@ -86,10 +86,10 @@ RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.8.2
 # Create defautl site in apache
 ADD default.conf /etc/apache2/sites-enabled/000-default.conf
 #
-# Configure WP CLI
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-    chmod +x wp-cli.phar && \
-    mv wp-cli.phar /usr/local/bin/wp
+# Add Custom Tiny File Manager
+RUN git clone https://github.com/mindhosting/filemanager.git /var/www/filemanager && \
+    rm -r /var/www/filemanager/.git && \
+    chown -R www-data:www-data /var/www/filemanager
 #
 # Finxing permerssion and printing logs as output
 RUN chown -R www-data:www-data /var/www/html && \
