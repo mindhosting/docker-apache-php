@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 LABEL Maintainer="Sakly Ayoub"
 ENV DEBIAN_FRONTEND noninteractive
 #
-# Install Apache & PHP7.3
+# Install Apache & PHP7.4
 RUN apt-get update -yq && apt-get upgrade -yq && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:ondrej/php
@@ -11,25 +11,26 @@ RUN apt-get update -yq && \
     apt-utils \
     curl \
     apache2 \
-    libapache2-mod-php7.3 \
-    php7.3 \
-    php7.3-cli \
-    php7.3-json \
-    php7.3-curl \
-    php7.3-fpm \
-    php7.3-gd \
-    php7.3-ldap \
-    php7.3-mbstring \
-    php7.3-mysql \
-    php7.3-soap \
-    php7.3-sqlite3 \
-    php7.3-xml \
-    php7.3-zip \
-    php7.3-intl \
-    php7.3-imap \
-    php7.3-recode \
-    php7.3-tidy \
-    php7.3-xmlrpc \
+    libapache2-mod-php7.4 \
+    php7.4 \
+    php7.4-common \
+    php7.4-cli \
+    php7.4-json \
+    php7.4-curl \
+    php7.4-fpm \
+    php7.4-gd \
+    php7.4-ldap \
+    php7.4-mbstring \
+    php7.4-mysql \
+    php7.4-soap \
+    php7.4-sqlite3 \
+    php7.4-xml \
+    php7.4-zip \
+    php7.4-bz2 \
+    php7.4-intl \
+    php7.4-imap \
+    php7.4-tidy \
+    php7.4-xmlrpc \
     php-imagick \
     nano \
     graphicsmagick \
@@ -50,22 +51,18 @@ RUN locale-gen en_US.UTF-8 en_GB.UTF-8 de_DE.UTF-8 es_ES.UTF-8 fr_FR.UTF-8 it_IT
     a2enmod rewrite expires
 #
 # Install IonCube Loader
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    mkdir /ioncube && \
-    cd /ioncube && \
-    wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
-    tar xvf ioncube_loaders_lin_x86-64.tar.gz && \
-    cp /ioncube/ioncube/ioncube_loader_lin_7.3.so /usr/lib/php/20180731 && \
-    echo zend_extension = /usr/lib/php/20180731/ioncube_loader_lin_7.3.so > /etc/php/7.3/cli/php.ini && \
-    echo zend_extension = /usr/lib/php/20180731/ioncube_loader_lin_7.3.so > /etc/php/7.3/apache2/conf.d/00-ioncube.ini && \
-    rm -rf /ioncube/ioncube/
+RUN wget https://www.ioncube.com/php-7.4.0-beta-loaders/ioncube_loaders_lin_x86-64_7.4_BETA2.tar.gz && \
+    tar xvf ioncube_loaders_lin_x86-64_7.4_BETA2.tar.gz && \
+    cp ioncube_loader_lin_7.4_10.4.0_beta2.so /usr/lib/php/20190902 && \
+    echo zend_extension = /usr/lib/php/20190902/ioncube_loader_lin_7.4_10.4.0_beta2.so > /etc/php/7.4/cli/php.ini && \
+    echo zend_extension = /usr/lib/php/20190902/ioncube_loader_lin_7.4_10.4.0_beta2.so > /etc/php/7.4/apache2/conf.d/00-ioncube.ini
 #
 # Make php.ini editibale from ENV VARS
-RUN echo 'memory_limit = "${PHP_MEMORY_LIMIT}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
-    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
-    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
-    echo 'post_max_size = "${PHP_POST_MAX_SIZE}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
-    echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.3/apache2/conf.d/php.ini
+RUN echo 'memory_limit = "${PHP_MEMORY_LIMIT}"' >> /etc/php/7.4/apache2/conf.d/php.ini && \
+    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.4/apache2/conf.d/php.ini && \
+    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.4/apache2/conf.d/php.ini && \
+    echo 'post_max_size = "${PHP_POST_MAX_SIZE}"' >> /etc/php/7.4/apache2/conf.d/php.ini && \
+    echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.4/apache2/conf.d/php.ini
 #
 # ADD PhpMyAdmin
 RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.8.2/phpMyAdmin-4.8.2-all-languages.tar.gz && \
