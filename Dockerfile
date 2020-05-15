@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 LABEL Maintainer="Sakly Ayoub"
 ENV DEBIAN_FRONTEND noninteractive
 #
-# Install Apache & PHP7.3
+# Install Apache & PHP7.2
 RUN apt-get update -yq && apt-get upgrade -yq && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:ondrej/php
