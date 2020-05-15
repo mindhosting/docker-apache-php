@@ -7,7 +7,6 @@ version: '3'
 services:
   db:
     image: mysql:5.7.29
-    restart: unless-stopped
     environment:
       MYSQL_DATABASE: admin
       MYSQL_USER: admin
@@ -19,7 +18,6 @@ services:
     build: ./
     depends_on:
       - db
-    restart: unless-stopped
     links:
       - db:db
     hostname: 127.0.0.1

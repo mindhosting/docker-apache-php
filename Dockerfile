@@ -11,23 +11,24 @@ RUN apt-get update -yq && \
     apt-utils \
     curl \
     apache2 \
-    libapache2-mod-php7.2 \
-    php7.2 \
-    php7.2-cli \
-    php7.2-json \
-    php7.2-curl \
-    php7.2-fpm \
-    php7.2-gd \
-    php7.2-ldap \
-    php7.2-mbstring \
-    php7.2-mysql \
-    php7.2-soap \
-    php7.2-sqlite3 \
-    php7.2-xml \
-    php7.2-zip \
-    php7.2-intl \
+    libapache2-mod-php7.1 \
+    php7.1 \
+    php7.1-cli \
+    php7.1-json \
+    php7.1-curl \
+    php7.1-fpm \
+    php7.1-gd \
+    php7.1-ldap \
+    php7.1-mbstring \
+    php7.1-mysql \
+    php7.1-soap \
+    php7.1-sqlite3 \
+    php7.1-xml \
+    php7.1-zip \
+    php7.1-intl \
+    php7.1-mcrypt \
     php-imagick \
-    php7.2-imap \
+    php7.1-imap \
     nano \
     graphicsmagick \
     imagemagick \
@@ -53,17 +54,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     cd /ioncube && \
     wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
     tar xvf ioncube_loaders_lin_x86-64.tar.gz && \
-    cp /ioncube/ioncube/ioncube_loader_lin_7.2.so /usr/lib/php/20170718 && \
-    echo zend_extension = /usr/lib/php/20170718/ioncube_loader_lin_7.2.so > /etc/php/7.2/cli/php.ini && \
-    echo zend_extension = /usr/lib/php/20170718/ioncube_loader_lin_7.2.so > /etc/php/7.2/apache2/conf.d/00-ioncube.ini && \
+    cp /ioncube/ioncube/ioncube_loader_lin_7.1.so /usr/lib/php/20160303 && \
+    echo zend_extension = /usr/lib/php/20160303/ioncube_loader_lin_7.1.so > /etc/php/7.1/cli/php.ini && \
+    echo zend_extension = /usr/lib/php/20160303/ioncube_loader_lin_7.1.so > /etc/php/7.1/apache2/conf.d/00-ioncube.ini && \
     rm -rf /ioncube/ioncube/
 #
 # Make php.ini editibale from ENV VARS
-RUN echo 'memory_limit = "${PHP_MEMORY_LIMIT}"' >> /etc/php/7.2/apache2/conf.d/php.ini && \
-    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.2/apache2/conf.d/php.ini && \
-    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.2/apache2/conf.d/php.ini && \
-    echo 'post_max_size = "${PHP_POST_MAX_SIZE}"' >> /etc/php/7.2/apache2/conf.d/php.ini && \
-    echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.2/apache2/conf.d/php.ini
+RUN echo 'memory_limit = "${PHP_MEMORY_LIMIT}"' >> /etc/php/7.1/apache2/conf.d/php.ini && \
+    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.1/apache2/conf.d/php.ini && \
+    echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.1/apache2/conf.d/php.ini && \
+    echo 'post_max_size = "${PHP_POST_MAX_SIZE}"' >> /etc/php/7.1/apache2/conf.d/php.ini && \
+    echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.1/apache2/conf.d/php.ini
 #
 # ADD PhpMyAdmin
 RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.8.2/phpMyAdmin-4.8.2-all-languages.tar.gz && \
