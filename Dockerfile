@@ -73,14 +73,14 @@ RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.8.2
     mv /var/www/phpMyAdmin-4.8.2-all-languages /var/www/phpmyadmin && \
     echo "<?php" >> /var/www/phpmyadmin/config.inc.php && \
     echo "\$i++;">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['auth_type'] = 'cookie';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['host'] = 'db';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['connect_type'] = 'tcp';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['compress'] = false;">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['extension'] = 'mysql';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['controluser'] = '';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['controlpass'] = '';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][$i]['hide_db'] = 'information_schema';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['auth_type'] = 'cookie';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['host'] = 'db';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['connect_type'] = 'tcp';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['compress'] = false;">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['extension'] = 'mysql';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['controluser'] = '';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['controlpass'] = '';">> /var/www/phpmyadmin/config.inc.php && \
+    echo "\$cfg['Servers'][\$i]['hide_db'] = 'information_schema';">> /var/www/phpmyadmin/config.inc.php && \
     chmod 544 /var/www/phpmyadmin/config.inc.php
 #
 # Create defautl site in apache
