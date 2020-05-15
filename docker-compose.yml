@@ -15,8 +15,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
       TZ: Africa/Tunis
 
-  apache-php7.3:
-    #image: mindengineering/apache:php7.3
+  web:
     build: ./
     depends_on:
       - db
