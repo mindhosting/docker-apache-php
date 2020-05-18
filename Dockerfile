@@ -65,7 +65,8 @@ RUN echo 'memory_limit = "${PHP_MEMORY_LIMIT}"' >> /etc/php/7.3/apache2/conf.d/p
     echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
     echo 'upload_max_filesize = "${PHP_MAX_FILESIZE}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
     echo 'post_max_size = "${PHP_POST_MAX_SIZE}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
-    echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.3/apache2/conf.d/php.ini
+    echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.3/apache2/conf.d/php.ini && \
+    echo 'date.timezone = "${TZ}"' >> /etc/php/7.3/apache2/conf.d/php.ini
 #
 # ADD PhpMyAdmin
 RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.8.2/phpMyAdmin-4.8.2-all-languages.tar.gz && \
