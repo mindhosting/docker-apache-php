@@ -41,7 +41,7 @@ services:
       - backend
 
   web:
-    image: mindhosting/apachephp:latest
+    image: mindhosting/apachephp:$PHP_VERSION
     deploy:
       replicas: $WEB_REPLICAS
       restart_policy:
