@@ -10,7 +10,7 @@ logo_print(){
     ██║ ╚═╝ ██║██║██║ ╚████║██████╔╝    ██║  ██║╚██████╔╝███████║   ██║   ██║██║ ╚████║╚██████╔╝
     ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝
                                                                                          PHP 7.3
-    APACHE PHP CONTAINER (R) MAI2020 V0.1
+    APACHE PHP CONTAINER (R) MAI2020 V1.0
     FOR MIND HOSTING
     https://mind.hosting
     by SAKLY Ayoub
