@@ -14,15 +14,19 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: rootpassword
       TZ: Africa/Tunis
+    network_mode: bridge
 
   web:
-    build: ./
+    image: mindhosting/apachephp:7.2-opcache
     depends_on:
       - db
     restart: unless-stopped
     links:
       - db:db
     hostname: 127.0.0.1
+    volumes:
+      - ./opcahce.ini:/etc/php/7.2/apache2/conf.d/opcache.ini
+      - ./opcahce.ini:/etc/php/7.2/cli/conf.d/opcache.ini
     environment:
       FILEMANAGER_ROOT_PATH: '/var/www/html'
       ADMIN_USERNAME: admin
@@ -37,3 +41,4 @@ services:
       PHP_INPUT_VARS: '5000'
     ports:
       - 80:80
+    network_mode: bridge
