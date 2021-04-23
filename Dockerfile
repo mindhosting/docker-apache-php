@@ -65,29 +65,8 @@ RUN echo 'memory_limit = "${PHP_MEMORY_LIMIT}"' >> /etc/php/7.4/apache2/conf.d/p
     echo 'max_input_vars = "${PHP_INPUT_VARS}"' >> /etc/php/7.4/apache2/conf.d/php.ini && \
     echo 'date.timezone = "${TZ}"' >> /etc/php/7.4/apache2/conf.d/php.ini
 #
-# ADD PhpMyAdmin
-RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.8.2/phpMyAdmin-4.8.2-all-languages.tar.gz && \
-    tar xfvz /tmp/phpmyadmin.tar.gz -C /var/www && \
-    mv /var/www/phpMyAdmin-4.8.2-all-languages /var/www/phpmyadmin && \
-    echo "<?php" >> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$i++;">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['auth_type'] = 'cookie';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['host'] = 'db';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['connect_type'] = 'tcp';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['compress'] = false;">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['extension'] = 'mysql';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['controluser'] = '';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['controlpass'] = '';">> /var/www/phpmyadmin/config.inc.php && \
-    echo "\$cfg['Servers'][\$i]['hide_db'] = 'information_schema';">> /var/www/phpmyadmin/config.inc.php && \
-    chmod 544 /var/www/phpmyadmin/config.inc.php
-#
 # Create defautl site in apache
 ADD default.conf /etc/apache2/sites-enabled/000-default.conf
-#
-# Add Custom Tiny File Manager
-RUN git clone https://github.com/mindhosting/filemanager.git /var/www/filemanager && \
-    rm -r /var/www/filemanager/.git && \
-    chown -R www-data:www-data /var/www/filemanager
 #
 # Finxing permerssion and printing logs as output
 RUN chown -R www-data:www-data /var/www/html && \
